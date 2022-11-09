@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;700;800&display=swap');
+
+[data-theme='apptheme'] {
+  --background: #ffff;
+  --primary-color: #ffc173;
+  --secundary-color: #d0d2ef;
+  --tertiary-color: #666666;
+  --card-border: #c7c6c6;
+
+  --title-color: #666666;
+  --sub-title: #ffff;
+  --secundary-background: #fafafa;
+  --disabled-color: #e0e0e0;
+}
