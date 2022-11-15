@@ -11,28 +11,33 @@ export const Background = styled.main<Props>`
 
 export const CenterLeftContent = styled.div`
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   height: 100vh;
-  padding: 0 25px;
+  width: 50vw;
 `;
 
-export const LeftContent = styled.div`
+export const LeftContent = styled.div``;
+
+export const RightContent = styled.div`
   h1 {
-    margin-top: 94px;
-    margin-bottom: 70px;
+    margin-bottom: 20px;
     font-weight: bold;
     font-size: 39px;
     color: var(--background);
     text-align: center;
   }
 
+  h2 {
+    font-weight: bold;
+    font-size: 15px;
+    color: var(--background);
+    text-align: center;
+  }
+
   display: flex;
   justify-content: center;
-`;
-
-export const RightContent = styled.div`
-  img {
-    height: 50vh;
-  }
+  align-items: center;
+  height: 100vh;
+  width: 50vw;
 `;

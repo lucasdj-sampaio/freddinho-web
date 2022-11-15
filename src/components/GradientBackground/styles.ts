@@ -9,7 +9,7 @@ interface Props {
 export const GradientDiv = styled.div<Props>`
   width: ${props => props.dimensionInPorcent?.w + 'vw'};
   height: ${props => props.dimensionInPorcent?.h + 'vh'};
-  border-radius: 15px;
+  border-radius: 50% 0 0 50%;
 
   background: linear-gradient(
     180deg,

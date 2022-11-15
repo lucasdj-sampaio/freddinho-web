@@ -1,9 +1,10 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
-import PublicRoute from './PublicRoute';
-import PrivateRoute from './PrivateRoute';
-import { LeftContent, RightContent } from '../pages/Login';
+import { Route, Routes } from 'react-router-dom';
 import Dashboard from '../pages/Dashboard';
+import { LeftContent, RightContent } from '../pages/Login';
+import { Profile } from '../pages/Profiles';
+import PrivateRoute from './PrivateRoute';
+import PublicRoute from './PublicRoute';
 
 const CustomRoutes: React.FC = () => {
   return (
@@ -17,6 +18,7 @@ const CustomRoutes: React.FC = () => {
           ></PublicRoute>
         }
       ></Route>
+      <Route path="/profiles" element={<Profile />}></Route>
       <Route
         path="/dashboard"
         element={
@@ -25,18 +27,6 @@ const CustomRoutes: React.FC = () => {
             content={<Dashboard />}
           ></PrivateRoute>
         }
-      ></Route>
-      <Route
-        path="/gestao"
-        element={<PrivateRoute subtitle="" content={<></>}></PrivateRoute>}
-      ></Route>
-      <Route
-        path="/registro-excecao"
-        element={<PrivateRoute subtitle="" content={<></>}></PrivateRoute>}
-      ></Route>
-      <Route
-        path="/relatorios"
-        element={<PrivateRoute subtitle="" content={<></>}></PrivateRoute>}
       ></Route>
     </Routes>
   );

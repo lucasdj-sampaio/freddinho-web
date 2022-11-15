@@ -1,19 +1,20 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 60vw;
-  height: 100vh;
+  width: 30vw;
 `;
 
 export const Content = styled.div`
-  padding: 0px 19%;
+  width: 23vw;
+`;
+
+export const ImgContent = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 34px 0;
 
   img {
-    width: 160px;
-    margin-top: 38px;
+    width: 300px;
   }
 `;
 

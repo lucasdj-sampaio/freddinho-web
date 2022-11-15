@@ -55,7 +55,7 @@ export const StyledButton = styled.button<Props>`
           box-shadow: rgb(220 220 220);
 
           :hover {
-            background-color: var(--gradient-color-middle);
+            background-color: var(--secundary-color);
           }
         `;
       case 'outline':

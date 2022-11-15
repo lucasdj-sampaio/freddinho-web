@@ -21,12 +21,12 @@ const PublicLayout: React.FC<Props> = ({
   return (
     <Background backgroundImg={BackgroundImg}>
       <CenterLeftContent>
-        <GradientBackground dimension={{ w: 35, h: 93 }}>
-          <LeftContent>{leftContent}</LeftContent>
-        </GradientBackground>
+        <LeftContent>{leftContent}</LeftContent>
       </CenterLeftContent>
 
-      <RightContent>{rightContent}</RightContent>
+      <GradientBackground dimension={{ w: 50, h: 100 }}>
+        <RightContent>{rightContent}</RightContent>
+      </GradientBackground>
     </Background>
   );
 };
