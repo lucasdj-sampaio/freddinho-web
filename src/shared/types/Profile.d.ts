@@ -3,4 +3,5 @@ export interface ProfileType {
   name: string;
   gender: string;
   birthYear: number;
+  accountModelId: number;
 }

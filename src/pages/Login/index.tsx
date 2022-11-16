@@ -4,7 +4,33 @@ import { IoIosLogIn } from 'react-icons/io';
 import LogoImg from '../../../public/img/logo.png';
 import Button from '../../components/atoms/Button';
 import Input from '../../components/atoms/Input';
+import { getDependent, validCredential } from '../../services/getRequest';
+import { ProfileType } from '../../shared/types/Profile';
 import { ButtonContent, Container, Content, Form, ImgContent } from './styles';
+
+interface Profiles {
+  profile: ProfileType[];
+}
+
+const handleSubmit = event => {
+  const formData = new FormData(event.currentTarget);
+  event.preventDefault();
+
+  const result = validCredential(
+    formData.get('user') as String,
+    formData.get('password') as String
+  );
+
+  try {
+    if (Number(result) > 0) {
+      const dependentJson = getDependent(String(result));
+
+      let dependent = JSON.parse(String(dependentJson)) as Profiles;
+    }
+  } catch (e) {
+    console.log(e.message);
+  }
+};
 
 export const LeftContent: React.FC = () => {
   return (
@@ -13,12 +39,17 @@ export const LeftContent: React.FC = () => {
         <img src={LogoImg} />
       </ImgContent>
 
-      <Form>
-        <Input label="Usuário"></Input>
-        <Input label="Senha"></Input>
+      <Form onSubmit={handleSubmit}>
+        <Input label="Usuário" name="user" required={true}></Input>
+        <Input
+          label="Senha"
+          name="password"
+          type="password"
+          required={true}
+        ></Input>
 
         <ButtonContent>
-          <Button variant="primary" size="medium">
+          <Button variant="primary" size="medium" type="submit">
             <IoIosLogIn /> Entrar
           </Button>
         </ButtonContent>
