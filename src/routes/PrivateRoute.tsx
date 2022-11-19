@@ -7,19 +7,15 @@ import PublicRoute from './PublicRoute';
 
 interface Props {
   content: React.ReactNode;
-  subtitle: string;
 }
 
-const PrivateRoute: React.FC<Props> = ({ subtitle, content }: Props) => {
+const PrivateRoute: React.FC<Props> = ({ content }: Props) => {
   const reducer = useSelector((state: RootState) => state.useracess);
 
   return (
     <>
       {reducer.userAcess.valid ? (
-        <PrivateLayout
-          subtitle={subtitle}
-          mainContent={content}
-        ></PrivateLayout>
+        <PrivateLayout mainContent={content}></PrivateLayout>
       ) : (
         <PublicRoute
           leftContent={<LeftContent />}

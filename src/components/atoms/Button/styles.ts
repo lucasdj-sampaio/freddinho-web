@@ -20,6 +20,8 @@ export const StyledButton = styled.button<Props>`
   svg {
     color: var(--Background);
     font-size: 18px;
+
+    margin-left: 10px;
   }
 
   ${({ size }) => {
@@ -69,11 +71,6 @@ export const StyledButton = styled.button<Props>`
             background-color: var(--secundary-color);
             color: var(--sub-title);
           }
-        `;
-      case 'disabled':
-        return css`
-          color: var(--tertiary-color);
-          background-color: var(--disabled-color);
         `;
       default:
         return null;

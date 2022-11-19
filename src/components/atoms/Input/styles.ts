@@ -10,8 +10,6 @@ export const StyledImput = styled.input`
   border-width: 1.5px;
   border-color: var(--tertiary-color);
   background-color: var(--secundary-background);
-  padding: 0 10px;
-  font-size: 12px;
 
   :focus {
     border-color: var(--primary-color);

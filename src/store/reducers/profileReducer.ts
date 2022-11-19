@@ -18,8 +18,19 @@ export const profileSlice = createSlice({
         state.users.push(dependent);
       });
     },
+
+    setActiveProfile(state, dependent: PayloadAction<ProfileType>) {
+      state.users.map(currentD => {
+        if (currentD.id === dependent.payload.id) {
+          currentD.active = true;
+        } else {
+          currentD.active = false;
+        }
+      });
+    },
   },
 });
 
+export const setActiveProfile = profileSlice.actions.setActiveProfile;
 export const setDependent = profileSlice.actions.setDependent;
 export default profileSlice.reducer;

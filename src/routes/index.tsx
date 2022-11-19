@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import Dashboard from '../pages/Dashboard';
+import { AdultChat } from '../pages/AdultChat';
+import { AdultMenu } from '../pages/AdultMenu';
 import { LeftContent, RightContent } from '../pages/Login';
 import { Profile } from '../pages/Profiles';
 import PrivateRoute from './PrivateRoute';
@@ -18,15 +19,17 @@ const CustomRoutes: React.FC = () => {
           ></PublicRoute>
         }
       ></Route>
-      <Route path="/profiles" element={<Profile />}></Route>
       <Route
-        path="/dashboard"
-        element={
-          <PrivateRoute
-            subtitle="Selecione uma das opções abaixo:"
-            content={<Dashboard />}
-          ></PrivateRoute>
-        }
+        path="/perfis"
+        element={<PrivateRoute content={<Profile />}></PrivateRoute>}
+      ></Route>
+      <Route
+        path="/menu"
+        element={<PrivateRoute content={<AdultMenu />}></PrivateRoute>}
+      ></Route>
+      <Route
+        path="/chat"
+        element={<PrivateRoute content={<AdultChat />}></PrivateRoute>}
       ></Route>
     </Routes>
   );

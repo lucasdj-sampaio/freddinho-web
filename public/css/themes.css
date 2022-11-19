@@ -7,8 +7,9 @@
   --tertiary-color: #666666;
   --card-border: #c7c6c6;
 
-  --title-color: #666666;
+  --font-color: #9497cf;
+  --secundary-font-color: #52568c;
+  --modal-color: #f1edab;
   --sub-title: #ffff;
   --secundary-background: #fafafa;
-  --disabled-color: #e0e0e0;
 }

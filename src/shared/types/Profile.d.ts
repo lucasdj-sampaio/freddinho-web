@@ -4,5 +4,6 @@ export interface ProfileType {
   gender: string;
   birthYear: number;
   accountModelId: number;
-  accountModel: {};
+  active?: boolean;
+  accountModel?: {};
 }
