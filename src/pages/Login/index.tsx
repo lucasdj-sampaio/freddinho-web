@@ -1,10 +1,16 @@
 import React from 'react';
 import { IoIosLogIn } from 'react-icons/io';
+import { useDispatch } from 'react-redux';
+import { setValid } from '../../store/reducers/acessReducer';
 //@ts-ignore
 import LogoImg from '../../../public/img/logo.png';
 import Button from '../../components/atoms/Button';
 import Input from '../../components/atoms/Input';
-import { getDependent, validCredential } from '../../services/getRequest';
+import {
+  getAccountId,
+  getDependent,
+  validCredential,
+} from '../../services/getRequest';
 import { ProfileType } from '../../shared/types/Profile';
 import { ButtonContent, Container, Content, Form, ImgContent } from './styles';
 
@@ -12,20 +18,26 @@ interface Profiles {
   profile: ProfileType[];
 }
 
-const handleSubmit = event => {
+const handleSubmit = async event => {
   const formData = new FormData(event.currentTarget);
   event.preventDefault();
 
-  const result = validCredential(
-    formData.get('user') as String,
-    formData.get('password') as String
-  );
+  const user = formData.get('user') as String;
+  const password = formData.get('password') as String;
 
   try {
-    if (Number(result) > 0) {
-      const dependentJson = getDependent(String(result));
+    const result = await validCredential(user, password);
 
-      let dependent = JSON.parse(String(dependentJson)) as Profiles;
+    if (Boolean(result)) {
+      const dispatch = useDispatch();
+
+      const accountId = await getAccountId(user, password);
+      dispatch(setValid(String(accountId)));
+
+      const dependentJson = await getDependent(accountId);
+
+      //@ts-ignore
+      dispatch(setDependent(dependentJson.json() as Profiles[]));
     }
   } catch (e) {
     console.log(e.message);

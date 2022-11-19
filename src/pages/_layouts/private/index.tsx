@@ -6,7 +6,12 @@ interface Props {
 }
 
 const PrivateLayout: React.FC<Props> = ({ subtitle, mainContent }: Props) => {
-  return <div></div>;
+  return (
+    <div>
+      <h1>{subtitle}</h1>
+      {mainContent}
+    </div>
+  );
 };
 
 export default PrivateLayout;

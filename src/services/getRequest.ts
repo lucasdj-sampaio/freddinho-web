@@ -1,45 +1,42 @@
-import axios from 'axios';
-import React from 'react';
+import axios from 'redaxios';
 
-export function validCredential(user: String, password: String) {
-  const [apiResponse, setResponse] = React.useState();
+const instance = axios.create({
+  baseURL: 'https://freddinho-api.azurewebsites.net',
+});
 
-  React.useEffect(() => {
-    async function get(user, password) {
-      const response = await axios.get(
-        'https://freddinho-api.azurewebsites.net/validcredential',
-        {
-          headers: {
-            email: user,
-            password: password,
-          },
-        }
-      );
-      setResponse(response.data);
-    }
-    get(user, password);
-  }, []);
+export async function validCredential(user, password) {
+  const response = await instance.post('validcredential', {
+    body: { email: user, password: password },
+  });
 
-  return apiResponse;
+  return JSON.stringify(response.data);
 }
 
-export function getDependent(userId: string) {
-  const [apiResponse, setResponse] = React.useState();
+export async function getAccountId(user, password) {
+  try {
+    const response = await instance.post('getaccountid', {
+      body: {
+        email: user,
+        password: password,
+      },
+    });
 
-  React.useEffect(() => {
-    async function get(userId) {
-      const response = await axios.get(
-        'https://freddinho-api.azurewebsites.net/getdependent',
-        {
-          headers: {
-            userId: userId,
-          },
-        }
-      );
-      setResponse(response.data);
-    }
-    get(userId);
-  }, []);
+    return JSON.stringify(response.data);
+  } catch (e) {
+    console.log(e);
+  }
+}
 
-  return apiResponse;
+export async function getDependent(userId) {
+  try {
+    const response = await instance.get('getdependent', {
+      params: {
+        userId: userId,
+      },
+    });
+
+    return JSON.stringify(response.data);
+  } catch (e) {
+    console.log(e);
+  }
 }

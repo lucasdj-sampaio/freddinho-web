@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
+import acessSlice from './reducers/acessReducer';
 import profileSlice from './reducers/profileReducer';
 
 const store = configureStore({
   reducer: {
     profiles: profileSlice,
+    useracess: acessSlice,
   },
 });
 
