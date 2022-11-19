@@ -4,6 +4,7 @@ import { IoHome } from 'react-icons/io5';
 //@ts-ignore
 import { useSelector } from 'react-redux';
 import { navigate } from 'vite-plugin-ssr/client/router';
+import BoyProfileImg from '../../../public/img/boy.png';
 import GirlProfileImg from '../../../public/img/girl.png';
 import { RootState } from '../../store';
 import { Dimension, GradientDiv, MenuContent } from './styles';
@@ -20,8 +21,14 @@ const Menu: React.FC<Props> = ({ dimension }: Props) => {
       <MenuContent>
         <IoHome onClick={() => navigate((window.location.href = '/perfis'))} />
         <HiBellAlert />
-        <img src={GirlProfileImg} />
-        <h3>Joana</h3>
+        <img
+          src={
+            reducer.activeProfile.gender === 'M'
+              ? BoyProfileImg
+              : GirlProfileImg
+          }
+        />
+        <h3>{reducer.activeProfile.name}</h3>
       </MenuContent>
     </GradientDiv>
   );

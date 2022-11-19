@@ -3,10 +3,19 @@ import { ProfileType } from '../../shared/types/Profile';
 
 interface Profile {
   users: ProfileType[];
+  activeProfile: ProfileType;
 }
 
 const initialState = {
   users: [],
+  activeProfile: {
+    id: 0,
+    birthYear: 0,
+    name: '',
+    gender: '',
+    accountModelId: 0,
+    active: false,
+  },
 } as Profile;
 
 export const profileSlice = createSlice({
@@ -22,9 +31,7 @@ export const profileSlice = createSlice({
     setActiveProfile(state, dependent: PayloadAction<ProfileType>) {
       state.users.map(currentD => {
         if (currentD.id === dependent.payload.id) {
-          currentD.active = true;
-        } else {
-          currentD.active = false;
+          state.activeProfile = dependent.payload;
         }
       });
     },
