@@ -1,7 +1,9 @@
 import React from 'react';
 import { IoIosLogIn } from 'react-icons/io';
 import { useDispatch } from 'react-redux';
-import { setValid } from '../../store/reducers/acessReducer';
+import { navigate } from 'vite-plugin-ssr/client/router';
+import { setValid } from '../../store/slices/access';
+import { setDependent } from '../../store/slices/profile';
 //@ts-ignore
 import LogoImg from '../../../public/img/logo.png';
 import Button from '../../components/atoms/Button';
@@ -14,44 +16,38 @@ import {
 import { ProfileType } from '../../shared/types/Profile';
 import { ButtonContent, Container, Content, Form, ImgContent } from './styles';
 
-interface Profiles {
-  profile: ProfileType[];
-}
-
-const handleSubmit = async event => {
-  const formData = new FormData(event.currentTarget);
-  event.preventDefault();
-
-  const user = formData.get('user') as String;
-  const password = formData.get('password') as String;
-
-  try {
-    const result = await validCredential(user, password);
-
-    if (Boolean(result)) {
-      const dispatch = useDispatch();
-
-      const accountId = await getAccountId(user, password);
-      dispatch(setValid(String(accountId)));
-
-      const dependentJson = await getDependent(accountId);
-
-      //@ts-ignore
-      dispatch(setDependent(dependentJson.json() as Profiles[]));
-    }
-  } catch (e) {
-    console.log(e.message);
-  }
-};
-
 export const LeftContent: React.FC = () => {
+  const dispatch = useDispatch();
+
   return (
     <Content>
       <ImgContent>
         <img src={LogoImg} />
       </ImgContent>
 
-      <Form onSubmit={handleSubmit}>
+      <Form
+        onSubmit={async event => {
+          const formData = new FormData(event.currentTarget);
+          event.preventDefault();
+
+          const user = formData.get('user') as String;
+          const password = formData.get('password') as String;
+
+          const result = await validCredential(user, password);
+
+          if (Boolean(result)) {
+            const accountId = await getAccountId(user, password);
+            dispatch(setValid({ id: String(accountId) }));
+
+            //@ts-ignore
+            const dependents: ProfileType[] = await getDependent(accountId);
+
+            dispatch(setDependent({ dependents: dependents }));
+
+            navigate((window.location.href = '/perfis'));
+          }
+        }}
+      >
         <Input label="Usuário" name="user" required={true}></Input>
         <Input
           label="Senha"

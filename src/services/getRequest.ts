@@ -1,24 +1,25 @@
 import axios from 'redaxios';
 
 const instance = axios.create({
-  baseURL: 'https://freddinho-api.azurewebsites.net',
+  baseURL: 'https://localhost:7257',
 });
 
 export async function validCredential(user, password) {
   const response = await instance.post('validcredential', {
-    body: { email: user, password: password },
+    email: user,
+    password: password,
   });
 
-  return JSON.stringify(response.data);
+  const parse: string = JSON.parse(JSON.stringify(response.data));
+  //@ts-ignore
+  return parse.success;
 }
 
 export async function getAccountId(user, password) {
   try {
     const response = await instance.post('getaccountid', {
-      body: {
-        email: user,
-        password: password,
-      },
+      email: user,
+      password: password,
     });
 
     return JSON.stringify(response.data);
@@ -35,7 +36,8 @@ export async function getDependent(userId) {
       },
     });
 
-    return JSON.stringify(response.data);
+    const parse: string = JSON.parse(JSON.stringify(response.data));
+    return parse;
   } catch (e) {
     console.log(e);
   }

@@ -6,7 +6,7 @@ interface Profile {
   activeProfile: ProfileType;
 }
 
-const initialState = {
+const initialState: Profile = {
   users: [],
   activeProfile: {
     id: 0,
@@ -16,28 +16,25 @@ const initialState = {
     accountModelId: 0,
     active: false,
   },
-} as Profile;
+};
 
 export const profileSlice = createSlice({
-  name: 'profiles',
+  name: 'profile',
   initialState,
   reducers: {
-    setDependent(state, dependents: PayloadAction<ProfileType[]>) {
-      dependents.payload.map(dependent => {
-        state.users.push(dependent);
-      });
+    setDependent(state, action: PayloadAction<{ dependents: ProfileType[] }>) {
+      state.users = action.payload.dependents;
     },
 
-    setActiveProfile(state, dependent: PayloadAction<ProfileType>) {
+    setActiveProfile(state, action: PayloadAction<{ dependent: ProfileType }>) {
       state.users.map(currentD => {
-        if (currentD.id === dependent.payload.id) {
-          state.activeProfile = dependent.payload;
+        if (currentD.id === action.payload.dependent.id) {
+          state.activeProfile = action.payload.dependent;
         }
       });
     },
   },
 });
 
-export const setActiveProfile = profileSlice.actions.setActiveProfile;
-export const setDependent = profileSlice.actions.setDependent;
+export const { setActiveProfile, setDependent } = profileSlice.actions;
 export default profileSlice.reducer;

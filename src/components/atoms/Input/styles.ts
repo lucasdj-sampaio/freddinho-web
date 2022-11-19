@@ -7,6 +7,8 @@ export const StyledImput = styled.input`
   height: 32px;
   border-radius: 28px;
   border-style: solid;
+  padding: 0 15px;
+  font-size: 12px;
   border-width: 1.5px;
   border-color: var(--tertiary-color);
   background-color: var(--secundary-background);

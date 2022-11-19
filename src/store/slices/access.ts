@@ -5,23 +5,25 @@ interface UserAcess {
   userAcess: acess;
 }
 
-const initialState = {
+const initialState: UserAcess = {
   userAcess: {
     id: 0,
     valid: false,
   },
-} as UserAcess;
+};
 
 export const acessSlice = createSlice({
-  name: 'useracess',
+  name: 'access',
   initialState,
   reducers: {
-    setValid(state, acess: PayloadAction<String>) {
-      state.userAcess.id = Number(acess.payload);
-      state.userAcess.valid = true;
+    setValid(state, action: PayloadAction<{ id: String }>) {
+      state.userAcess = {
+        id: Number(action.payload.id),
+        valid: true,
+      };
     },
   },
 });
 
-export const setValid = acessSlice.actions.setValid;
+export const { setValid } = acessSlice.actions;
 export default acessSlice.reducer;

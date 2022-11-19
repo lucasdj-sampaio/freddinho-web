@@ -1,17 +1,20 @@
 import React from 'react';
+import { VscPlayCircle } from 'react-icons/vsc';
+import { useSelector } from 'react-redux';
+import { navigate } from 'vite-plugin-ssr/client/router';
 //@ts-ignore
 import LogoMenu from '../../../public/img/logo_menu.png';
 //@ts-ignore
-//@ts-ignore
-import { VscPlayCircle } from 'react-icons/vsc';
-import { navigate } from 'vite-plugin-ssr/client/router';
 import BackgroundImg from '../../../public/img/main_gif.gif';
 import Button from '../../components/atoms/Button';
 import BoxBackground from '../../components/BoxBackground';
 import Menu from '../../components/Menu';
+import { RootState } from '../../store';
 import { Background, ButtonContent, Content, ImgContent } from './styled';
 
 export const AdultMenu: React.FC = () => {
+  const reducer = useSelector((state: RootState) => state.profile);
+
   return (
     <Background img={BackgroundImg}>
       <Menu dimension={{ w: 95, h: 10 }} />
@@ -20,7 +23,7 @@ export const AdultMenu: React.FC = () => {
           <ImgContent>
             <img src={LogoMenu} />
           </ImgContent>
-          <h1>Olá, Joana!</h1>
+          <h1>Olá, {reducer.activeProfile.name}!</h1>
           <h2>
             Que bom te ter de volta aqui! <br />
             Deseja retomar o chat de onde parou?

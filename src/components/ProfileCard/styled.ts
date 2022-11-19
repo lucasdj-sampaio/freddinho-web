@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+interface Props {
+  cardsize: number;
+}
+
 export const Content = styled.div`
   h1 {
     margin-bottom: 50px;
@@ -11,9 +15,10 @@ export const Content = styled.div`
   }
 `;
 
-export const UserGroup = styled.div`
+export const UserGroup = styled.div<Props>`
   display: flex;
-  justify-content: space-between;
+  justify-content: ${props =>
+    props.cardsize === 1 ? 'center' : 'space-between'};
 `;
 
 export const UserContent = styled.div`

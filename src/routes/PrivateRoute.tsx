@@ -1,29 +1,20 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { LeftContent, RightContent } from '../pages/Login';
+import { Navigate } from 'react-router-dom';
 import PrivateLayout from '../pages/_layouts/private';
 import { RootState } from '../store';
-import PublicRoute from './PublicRoute';
-
 interface Props {
   content: React.ReactNode;
 }
 
 const PrivateRoute: React.FC<Props> = ({ content }: Props) => {
-  const reducer = useSelector((state: RootState) => state.useracess);
+  const reducer = useSelector((state: RootState) => state.access);
 
-  return (
-    <>
-      {reducer.userAcess.valid ? (
-        <PrivateLayout mainContent={content}></PrivateLayout>
-      ) : (
-        <PublicRoute
-          leftContent={<LeftContent />}
-          rightContent={<RightContent />}
-        ></PublicRoute>
-      )}
-    </>
-  );
+  if (!reducer.userAcess.valid) {
+    return <Navigate to={'/'} />;
+  }
+
+  return <PrivateLayout mainContent={content}></PrivateLayout>;
 };
 
 export default PrivateRoute;

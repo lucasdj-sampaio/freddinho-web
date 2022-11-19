@@ -9,7 +9,7 @@ import { RootState } from '../../store';
 import { Background, Content, ImgConfig } from './styled';
 
 export const Profile: React.FC = () => {
-  const profiles = useSelector((state: RootState) => state.profiles);
+  const profiles = useSelector((state: RootState) => state.profile);
 
   return (
     <Background img={BackgroundImg}>
