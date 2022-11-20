@@ -1,17 +1,33 @@
 import React from 'react';
-import { Container } from '../atoms/Input/styles';
-import { Content } from './styles';
+import { AiOutlineCloseCircle } from 'react-icons/ai';
+import {
+  BackgroundModal,
+  ModalContent,
+  ModalHeader,
+  ModalImg,
+  StyledModal,
+} from './styles';
+//@ts-ignore
+import Img from '../../../public/img/elefante_triste.png';
 
 const Modal = ({ onClose, children }) => {
-    return (
-        <Content>
-            <div className='modal'>
-                <button className='close' onClick={onClose} > X </button>
-                <div className='contentChildren'>{children}</div>
-            </div>
-        </Content>
+  return (
+    <BackgroundModal>
+      <StyledModal>
+        <ModalHeader>
+          <AiOutlineCloseCircle onClick={onClose} />
+        </ModalHeader>
 
-    )
+        <ModalImg>
+          <img src={Img} />
+        </ModalImg>
+
+        <ModalContent>
+          <div className="contentChildren">{children}</div>
+        </ModalContent>
+      </StyledModal>
+    </BackgroundModal>
+  );
 };
 
 export default Modal;

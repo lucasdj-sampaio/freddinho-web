@@ -2,6 +2,7 @@ import axios from 'redaxios';
 
 const instance = axios.create({
   baseURL: 'https://localhost:7257',
+  //baseURL: 'https://freddinho-api.azurewebsites.net',
 });
 
 export async function validCredential(user, password) {

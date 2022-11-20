@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { IoIosLogIn } from 'react-icons/io';
 import { useDispatch } from 'react-redux';
 import { navigate } from 'vite-plugin-ssr/client/router';
@@ -8,6 +8,7 @@ import { setDependent } from '../../store/slices/profile';
 import LogoImg from '../../../public/img/logo.png';
 import Button from '../../components/atoms/Button';
 import Input from '../../components/atoms/Input';
+import Modal from '../../components/Modal';
 import {
   getAccountId,
   getDependent,
@@ -18,9 +19,21 @@ import { ButtonContent, Container, Content, Form, ImgContent } from './styles';
 
 export const LeftContent: React.FC = () => {
   const dispatch = useDispatch();
+  const [modalState, setModal] = useState(false);
 
   return (
     <Content>
+      {modalState ? (
+        <Modal onClose={() => setModal(false)}>
+          <h2>Algo deu errado...</h2>
+          <label>
+            O usuário e senha não correspondem às <br />
+            informações em nossos registros. Tente <br />
+            novamente!
+          </label>
+        </Modal>
+      ) : null}
+
       <ImgContent>
         <img src={LogoImg} />
       </ImgContent>
@@ -45,6 +58,8 @@ export const LeftContent: React.FC = () => {
             dispatch(setDependent({ dependents: dependents }));
 
             navigate((window.location.href = '/perfis'));
+          } else {
+            setModal(true);
           }
         }}
       >

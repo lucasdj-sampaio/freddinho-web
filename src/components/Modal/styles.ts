@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Content = styled.div`
+export const BackgroundModal = styled.div`
   width: 100%;
   height: 100vh;
   position: absolute;
@@ -11,24 +11,57 @@ export const Content = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  .modal {
-    background-color: var(--modal-color);
-    color: var(--secundary-font-color);
-    width: 30%;
-    height: 20%;
-    border-radius: 20px;
-    text-align: center;
-    .close {
-      background-color: transparent;
-      border: none;
-      outline: none;
-      width: 32px;
-      height: 32px;
-      color: var(--secundary-font-color);
-      display: block;
-      right: calc(-100% + 50px);
-      position: relative;
-      margin-bottom: 3%;
+`;
+
+export const StyledModal = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+
+  background-color: var(--background);
+  width: 30%;
+  border-radius: 20px;
+  text-align: center;
+  padding: 20px;
+`;
+
+export const ModalHeader = styled.div`
+  display: flex;
+  justify-content: end;
+  width: 100%;
+
+  svg {
+    color: var(--primary-color);
+    font-size: 23px;
+
+    :hover {
+      cursor: pointer;
+      box-shadow: rgba(0, 0, 0, 0.8);
     }
+  }
+`;
+
+export const ModalImg = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+  img {
+    width: 108px;
+  }
+`;
+
+export const ModalContent = styled.div`
+  color: var(--secundary-font-color);
+
+  h2 {
+    color: (--primary-color);
+    font-size: 16px;
+    font-weight: 700;
+    margin: 10px 0;
+  }
+
+  label {
+    font-size: 14px;
   }
 `;
