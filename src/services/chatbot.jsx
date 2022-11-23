@@ -1,8 +1,8 @@
 export default function createChat(url) {
   window.watsonAssistantChatOptions = {
-    integrationID: '522ab48c-3799-4493-9cb2-fda6738666ca', // The ID of this integration.
-    region: 'au-syd', // The region your integration is hosted in.
-    serviceInstanceID: 'd49713dd-cdac-4bae-8394-920d98824e24',
+    integrationID: 'ff61f9af-d4e5-4af7-a291-de7fb8f3dff7', // The ID of this integration.
+    region: 'us-south', // The region your integration is hosted in.
+    serviceInstanceID: 'a74e97b6-5ebc-42fa-a8fd-9645d7a59dbd',
     // The ID of your service instance.
     onLoad(instance) {
       if (window.location.pathname.includes(url)) {
